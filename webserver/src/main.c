@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <sys/utsname.h>
+#include <test.h>
 
 int main(int argc, char const *argv[])
 {
@@ -14,6 +15,9 @@ int main(int argc, char const *argv[])
     printf("Release:  %s\n", os_info.release);
     printf("Version:  %s\n", os_info.version);
     printf("Machine:  %s\n", os_info.machine);
+
+    // Test header file working
+    printf("sum_for(5, 20) = %d\n", sum_for(5, 20));
 
     return 0;
 }
