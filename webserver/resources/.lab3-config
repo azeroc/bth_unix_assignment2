@@ -1,0 +1,21 @@
+# These are comment lines and should be ignored by config parser (as well as blank lines)
+# Valid values (<keyword> = config value -> runtime type value):
+# <keyword> = true -> 1
+# <keyword> = false -> 0
+# <keyword> = int
+# <keyword> = "string value" -> char[100] { "string value" }
+# <keyword> = unquoted_string -> char[100] { "unquoted string" }
+
+# Listening port
+port = 80
+
+# Run as daemon?
+as_daemon = true
+
+# Webserver document root directory path
+# Default: ../../www (config parser should get absolute path)
+doc_root_dir = ../../www
+
+# Logfile
+# Default: webserver.log (logfile in the same place as webserver binary)
+logfile = webserver.log

@@ -1,6 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
-#include <stdio.h>
+#include <common.h>
+
+#define CONF_FILENAME ".lab3-config"
+#define CONFIG_LINE_MAX (PATH_MAX+100)
 
 typedef enum {
     // Invalid state (0)
@@ -11,32 +14,36 @@ typedef enum {
     MODE_THREAD,
 
     // NOT YET IMPLEMENTED
-    // MODE_PREFORK (2): Prematurely create X amount of subprocesses/forks for handling request load
-    MODE_PREFORK,
+    // MODE_FORK (2): Main process creates/forks child processes for incoming connection handling
+    MODE_FORK,
 } request_mode_t;
 
 typedef struct {
     // Listening port for accepting client connections
-    int listen_port;
+    int port;
+
+    // The path to "www" directory of webserver
+    char doc_root_dir[PATH_MAX];
 
     // File binding to log-file (used by Logger)
+    // Default: NULL
     FILE* logfile;
 
     // What request-handling mode to use
     request_mode_t request_mode;
 
-    // If should be run as daemon
-    bool as_daemon;
+    // 0: run webserver normally
+    // 1: run webserver as daemon
+    int as_daemon;
 
     // 0 if read_conf_file was successful
     // > 0 if read_conf_file failed
     int parse_err;
 } config_t;
 
-// Parse configuration file ".lab3-config" and return pointer to config_t object
-// Return NULL and set perror if parsed incorrect config file
+// Parse configuration file ".lab3-config" and fill passed config_t object
 // Run this BEFORE override_conf(...)
-config_t* read_conf_file(FILE *confFile);
+void read_conf_file(config_t* config);
 
 // Parse program arguments and override configuration object with them
 // Example: parsing "-d" in argv will set config.as_daemon to 'true'

@@ -1,10 +1,12 @@
-#include <stdio.h>
+#include <common.h>
 #include <sys/utsname.h>
 #include <test.h>
+#include <config.h>
 
 int main(int argc, char const *argv[])
 {
-    // Define utsname variable
+    // Variable definitions
+    config_t config;
     struct utsname os_info;
     uname(&os_info); // Load OS details into os_info variable
 
@@ -18,6 +20,10 @@ int main(int argc, char const *argv[])
 
     // Test header file working
     printf("sum_for(5, 20) = %d\n", sum_for(5, 20));
+
+    // Config parse and override
+    read_conf_file(&config);
+    override_conf(&config, argv);
 
     return 0;
 }
