@@ -19,3 +19,7 @@ doc_root_dir = ../../www
 # Logfile
 # Default: webserver.log (logfile in the same place as webserver binary)
 logfile = webserver.log
+
+# Request TCP read/write socket buffer size
+# Default: 8192 B / 8kB
+sock_bufsize = 8192
