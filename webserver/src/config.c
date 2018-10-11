@@ -16,6 +16,7 @@ void read_conf_file(config_t* config, const char* filename)
     config->request_mode = MODE_THREAD;
     config->as_daemon = 0;
     config->sock_bufsize = CONF_DEFAULT_SOCK_BUFSIZE;
+    config->req_bufsize = CONF_DEFAULT_REQ_BUFSIZE;
     config->err_code = CONFERR_OK;
 
     printf("debug => read_conf_file::filePtr = fopen(\"%s\", \"r\")\n", filename);

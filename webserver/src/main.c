@@ -1,5 +1,6 @@
 #include <common.h>
 #include <config.h>
+#include <net_thread.h>
 
 void usage() {
     printf("Usage: webserver [options] -c <config path>\n");
@@ -15,9 +16,9 @@ void usage() {
 int main(int argc, char const *argv[])
 {
     // Variable definitions
+    int listen_ec = 0; // Listening server exit code
     config_t config;
     const char* conf_filename = NULL;
-    int debug_mode = 0;
     int validation_result = 0;
 
     // Required/special argument parsing
@@ -51,5 +52,8 @@ int main(int argc, char const *argv[])
         return validation_result;
     }
 
-    return 0;
+    // Start HTTP 1.0 web-server listening service
+    listen_ec = thread_listen(&config);
+
+    return listen_ec;
 }

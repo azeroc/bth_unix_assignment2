@@ -6,6 +6,7 @@
 
 // DEFAULTS
 #define CONF_DEFAULT_SOCK_BUFSIZE 8192
+#define CONF_DEFAULT_REQ_BUFSIZE 8192
 
 // Config errors
 typedef enum {
@@ -42,7 +43,7 @@ typedef enum {
 
 typedef struct {
     // Listening port for accepting client connections
-    int port;
+    uint16_t port;
 
     // The path to "www" directory of webserver
     char doc_root_dir[PATH_MAX];
@@ -61,6 +62,11 @@ typedef struct {
     // Request TCP read/write socket buffer size
     // Default: 8192 B / 8kB
     int sock_bufsize;
+
+    // Request's message buffer size
+    // Default: 8192 B / 8kB (Common limit among web servers)
+    // If this is exceeded, server returns 400 error (Bad Request)
+    int req_bufsize;
 
     // CONF_PARSE_OK(0) if read_conf_file was successful
     // conf_error_t > 0 if read_conf_file failed

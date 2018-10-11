@@ -12,7 +12,7 @@ RESDIR = resources
 SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
-CFLAGS = -I$(INCDIR) -Wall -lpthread
+CFLAGS = -I$(INCDIR) -Wall -pthread
 
 # == == == Makefile logic == == ==
 

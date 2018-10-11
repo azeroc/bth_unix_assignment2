@@ -1,12 +1,11 @@
 #ifndef NET_THREAD_H
 #define NET_THREAD_H
-#include <common.h>
 #include <config.h>
 
 // Thread data structure
 typedef struct {
     int socket_id;
-    const config_t* conf;
+    const config_t* conf; // Must not be modified by threads (otherwise its a race condition)
 } thread_data_t;
 
 // Starts thread-based web listening, requests get split off in their own separate threads
