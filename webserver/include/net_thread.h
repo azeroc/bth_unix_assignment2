@@ -2,6 +2,9 @@
 #define NET_THREAD_H
 #include <config.h>
 
+// Interesting note: errno is thread-local, therefore thread-safe
+// Source: https://stackoverflow.com/a/1694170 (http://linux.die.net/man/3/errno)
+
 // Thread data structure
 typedef struct {
     int socket_id;

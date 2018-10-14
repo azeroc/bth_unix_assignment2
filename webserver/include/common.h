@@ -5,6 +5,9 @@
 #include <errno.h>
 #include <pthread.h>
 #include <sys/socket.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <time.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
